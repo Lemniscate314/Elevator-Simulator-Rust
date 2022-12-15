@@ -83,11 +83,18 @@ impl TElevator for Elevator
                 for i in 0..=self.num_of_passengers -1
                 {
                     let floor = self.select_floor(a);
-                    assert!(self.list_of_floor.contains(&floor));
+                    if assert!(self.list_of_floor.contains(&floor))
+                    {
+                        self.list_of_floor.push(floor);
+                    }
                 }
             }
         }
         println!("Elevator is closing ...");
+        thread::sleep(Duration::new(1,500));
+        self.is_door_open = true;
+
+
 
     }
 }
